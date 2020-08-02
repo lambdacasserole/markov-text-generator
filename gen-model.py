@@ -75,43 +75,45 @@ def compute_model (analysis, starts):
 	return MarkovModel({h: starts.count(h) / start_count for h in starts}, model)
 
 
+# Allow module to be imported by others.
+if __name__ == "__main__":
 
-# Check args length.
-if len(sys.argv) < 2:
-	print("Usage: python3 gen-model.py <file1> <file2> ... <filen>")
-	exit()
+	# Check args length.
+	if len(sys.argv) < 2:
+		print("Usage: python3 gen-model.py <file1> <file2> ... <filen>")
+		exit()
 
-# Take in all filepaths from command line and check they exist.
-file_paths = sys.argv[1:]
-if not all([os.path.isfile(f) for f in file_paths]):
-	print("Error: Could not read one or more input files.")
-	exit(1)
+	# Take in all filepaths from command line and check they exist.
+	file_paths = sys.argv[1:]
+	if not all([os.path.isfile(f) for f in file_paths]):
+		print("Error: Could not read one or more input files.")
+		exit(1)
 
-# TODO: These filters are designed for the Enron email dataset. Change them if needed.
+	# TODO: These filters are designed for the Enron email dataset. Change them if needed.
 
-# Filters on lines.
-line_filters = [
-	r"\t.*", # Email headers.
-	r"^.*?:",
-	r"^_", # Separators.
-	r"^=",
-	r"^-",
-	r"^\+"
-]
+	# Filters on lines.
+	line_filters = [
+		r"\t.*", # Email headers.
+		r"^.*?:",
+		r"^_", # Separators.
+		r"^=",
+		r"^-",
+		r"^\+"
+	]
 
-# Filters on individual tokens.
-token_filters = [
-	r".*?[><\*\+_\-\"%@\[\]&\(\)#\|=~].*?", # Anything containing awkward symbols.
-	r"^[\.\,\?\!:;]+$", # Sentence punctuators by themselves.
-	r"^[0-9]+$", # Numbers by themselves.
-	r"\b[A-Z]+\b", # Words in all caps.
-]
+	# Filters on individual tokens.
+	token_filters = [
+		r".*?[><\*\+_\-\"%@\[\]&\(\)#\|=~].*?", # Anything containing awkward symbols.
+		r"^[\.\,\?\!:;]+$", # Sentence punctuators by themselves.
+		r"^[0-9]+$", # Numbers by themselves.
+		r"\b[A-Z]+\b", # Words in all caps.
+	]
 
-# Analyse file, using filters and an "=" line continuation character.
-analysis, starts = analyze(file_paths, line_filters, token_filters, "=")
+	# Analyse file, using filters and an "=" line continuation character.
+	analysis, starts = analyze(file_paths, line_filters, token_filters, "=")
 
-# Compute model from analysis.
-model = compute_model(analysis, starts)
+	# Compute model from analysis.
+	model = compute_model(analysis, starts)
 
-# Output serialized model.
-print(model.serialize())
+	# Output serialized model.
+	print(model.serialize())
