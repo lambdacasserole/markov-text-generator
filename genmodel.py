@@ -2,7 +2,7 @@ import sys
 import re
 import os
 
-from markov import MarkovModel
+from markov_text_generator.markov import MarkovModel
 
 
 def tokenize (text):

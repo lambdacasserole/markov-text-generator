@@ -1,7 +1,7 @@
 import sys
 import os
 
-from markov import MarkovModel
+from markov_text_generator.markov import MarkovModel
 
 
 # Check args length.
@@ -28,3 +28,4 @@ if len(sys.argv) > 2:
 
 # Output model results.
 print(model.generate_text(n))
+
