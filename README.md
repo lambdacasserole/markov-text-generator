@@ -8,6 +8,13 @@ Sometimes you just want to generate random text that's usually sort of grammatic
 This is the same for Transwestern Pipeline Company name should see you. Tracy, wanted to sit in? checked by anyone as planned, with this additional schedule, 2. need to communicate this one? Do you can constructively talk through one last week of his list for the updated version of the best estimate at your comments as to you need to have input and Administration. Legal Consolidation Data Viewer DataWarehouse User Role Consolidated Thank you. You are not sure it will be aware of you pland to outweigh the percentage of Networks, and privileged material for was ok Let's plan assessments from...
 ```
 
+## Installation
+This package is not currently on PyPI. You can install this repo as a pip package using the following command:
+
+```bash
+pip install git+ssh://git@github.com/lambdacasserole/markov-text-generator.git
+```
+
 ## Usage (Command Line)
 You can use the models entirely from the command line if you like, it's really straightforward.
 
